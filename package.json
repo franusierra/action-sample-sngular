@@ -3,11 +3,8 @@
     "version": "1.0.0",
     "description": "Hello world action sngulalr",
     "author": "Fran Nuñez <franusierra@gmail.com>",
-    "main": "server.js",
+    "main": "hola-gente.js",
     "scripts": {
-      "start": "node server.js"
-    },
-    "dependencies": {
-      "express": "^4.16.1"
+      "start": "node hola-gente.js"
     }
   }

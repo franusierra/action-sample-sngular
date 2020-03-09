@@ -1,0 +1,13 @@
+name: '¡Hola gente!'
+description: 'Te saluda desde una imagen de docker'
+inputs:
+    nombre-a-saludar:
+        description: 'Nombre de la persona a la que va a saludar docker'
+        required: true
+        default: 'gente'
+outputs:
+    salu2:
+        description: 'El saludo que llega desde docker'
+runs:
+    using: 'docker'
+    image: 'TODO - la imagen que coge los datos desde package'
