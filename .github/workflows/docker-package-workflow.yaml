@@ -15,11 +15,15 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Set the tag as an env
-              run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
+              run: | 
+                echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
+                echo "The tag version is " ${{env.RELEASE_VERSION}}
             - name: Login to the docker registry of github packages
               run: echo ${{ secrets.LOGIN_TOKEN }} || docker login -u franusierra --password-stdin docker.pkg.github.com
-            - name: Building the docker action and pushing to packages
-              run: |
-                docker build . --file Dockerfile --tag docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-actions:${{env.RELEASE_VERSION}}
-                docker push docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-actions:${{env.RELEASE_VERSION}}
+            - name: Building the docker action 
+              run: docker build . --file Dockerfile --tag hola-gente-action:${{env.RELEASE_VERSION}}
+            - name: Taging the docker and pushing to repo  
+            - run:  
+                docker tag hola-gente-action:${{env.RELEASE_VERSION}} docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:${{env.RELEASE_VERSION}}
+                docker push docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:${{env.RELEASE_VERSION}}
               
