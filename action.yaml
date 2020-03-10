@@ -3,11 +3,14 @@ description: 'Te saluda desde una imagen de docker'
 inputs:
     nombre-a-saludar:
         description: 'Nombre de la persona a la que va a saludar docker'
-        required: true
+        required: false
         default: 'gente'
 outputs:
     salu2:
         description: 'El saludo que llega desde docker'
 runs:
     using: 'docker'
-    image: 'docker.pkg.github.com/franusierra/hola-gente/hola-gente-actions:latest'
+    image: 'docker://docker.pkg.github.com/franusierra/hola-gente/hola-gente-actions:latest'
+    args:
+        - ${{ inputs.nombre-a-saludar }} 
+
