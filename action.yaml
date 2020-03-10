@@ -10,7 +10,7 @@ outputs:
         description: 'El saludo que llega desde docker'
 runs:
     using: 'docker'
-    image: 'docker://docker.pkg.github.com/franusierra/hola-gente/hola-gente-actions:latest'
+    image: 'docker://docker.pkg.github.com/franusierra/hola-gente/hola-gente-action:latest'
     args:
         - ${{ inputs.nombre-a-saludar }} 
 
