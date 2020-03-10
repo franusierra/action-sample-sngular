@@ -12,7 +12,7 @@ jobs:
             - uses: actions/checkout@v2
             - name: Building the docker action
               run: |
-                docker login -u franusierra -p ${{ secrets.LOGIN_TOKEN }}
+                echo ${{ secrets.LOGIN_TOKEN }} || docker login -u franusierra --password-stdin docker.pkg.github.com
                 docker build . --file Dockerfile --tag hola-gente-actions:$(date +%s)
                 docker push docker.pkg.github.com/franusierra/hola-gente/hola-gente-actions:latest
               
