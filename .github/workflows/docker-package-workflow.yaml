@@ -10,9 +10,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: Building the docker action
+            - name: Building the docker action and pushing to packages
               run: |
                 echo ${{ secrets.LOGIN_TOKEN }} || docker login -u franusierra --password-stdin docker.pkg.github.com
-                docker build . --file Dockerfile --tag hola-gente-actions:$(date +%s)
+                docker build . --file Dockerfile --tag docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-actions:$(date +%s)
                 docker push docker.pkg.github.com/franusierra/hola-gente/hola-gente-actions:latest
               
