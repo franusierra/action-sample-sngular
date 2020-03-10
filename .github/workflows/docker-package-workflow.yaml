@@ -27,3 +27,15 @@ jobs:
                 echo "Pushing image"
                 docker push docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:$GIT_TAG_NAME
                 echo "Pushing succesfull"
+            - name: Taging the docker and pushing to repo of dockerhub
+                run: |
+                  echo "Login to dockerhub..."
+                  docker login -u franusi -p ${{ secrets.LOGIN_PASSWORD_DOCKERHUB }}
+                  echo "Login succesfull"
+                  echo "Tagging image"
+                  docker tag hola-gente-action:$GIT_TAG_NAME franusi/hola-gente-action:$GIT_TAG_NAME
+                  echo "Tagging succesfull"
+                  echo "Pushing image"
+                  docker push franusi/hola-gente-action:$GIT_TAG_NAME
+                  echo "Pushing succesfull"
+                
