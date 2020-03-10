@@ -23,7 +23,7 @@ jobs:
             - name: Building the docker action 
               run: docker build . --file Dockerfile --tag hola-gente-action:${{env.RELEASE_VERSION}}
             - name: Taging the docker and pushing to repo  
-            - run:  
+              run:  
                 docker tag hola-gente-action:${{env.RELEASE_VERSION}} docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:${{env.RELEASE_VERSION}}
                 docker push docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:${{env.RELEASE_VERSION}}
               
