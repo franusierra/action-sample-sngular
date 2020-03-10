@@ -18,7 +18,13 @@ jobs:
               run: docker build . --file Dockerfile --tag hola-gente-action:$GIT_TAG_NAME
             - name: Taging the docker and pushing to repo  
               run: |
-                echo ${{ secrets.LOGIN_TOKEN }} || docker login -u franusierra --password-stdin docker.pkg.github.com
+                echo "Login to docker..."
+                docker login -u franusierra -p ${{ secrets.LOGIN_TOKEN }} docker.pkg.github.com
+                echo "Login succesfull"
+                echo "Tagging image"
                 docker tag hola-gente-action:$GIT_TAG_NAME docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:$GIT_TAG_NAME
+                echo "Tagging succesfull"
+                echo "Pushing image"
                 docker push docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:$GIT_TAG_NAME
+                echo "Pushing succesfull"
               
