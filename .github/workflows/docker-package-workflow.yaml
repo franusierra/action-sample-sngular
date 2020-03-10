@@ -1,0 +1,17 @@
+on:
+    pull_request:
+        branches:
+            - master
+    push:
+        branches:
+            - master
+jobs:
+    buildAndPushDocker:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Building the docker action
+              run: docker login -u franusierra -p ${{ secrets.LOGIN_TOKEN }}
+              run: docker build . --file Dockerfile --tag hola-gente-actions:$(date +%s)
+              run: docker push docker.pkg.github.com/franusierra/hola-gente/hola-gente-actions:latest
+              
