@@ -1,10 +1,10 @@
 on:
     pull_request:
-        tags:
-            - 'v*.*.*'
+        branches:
+            - master
     push:
-        tags:
-            - 'v*.*.*'
+        branches:
+            - master
 jobs:
     buildAndPushDocker:
         runs-on: ubuntu-latest
@@ -17,7 +17,7 @@ jobs:
             - name: Building the docker action 
               run: docker build . --file Dockerfile --tag hola-gente-action:$GIT_TAG_NAME
             - name: Taging the docker and pushing to repo  
-              run:  
+              run: |
                 docker tag hola-gente-action:$GIT_TAG_NAME docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:$GIT_TAG_NAME
                 docker push docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:$GIT_TAG_NAME
               
