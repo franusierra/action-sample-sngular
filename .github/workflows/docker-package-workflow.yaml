@@ -1,10 +1,10 @@
 on:
     pull_request:
-        branches:
-            - master
+        tags:
+            - 'v*'
     push:
-        branches:
-            - master
+        tags:
+            - 'v*'
 jobs:
     buildAndPushDocker:
         runs-on: ubuntu-latest
