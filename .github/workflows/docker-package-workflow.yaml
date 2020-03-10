@@ -38,4 +38,7 @@ jobs:
                   echo "Pushing image"
                   docker push franusi/hola-gente-action:$GIT_TAG_NAME
                   echo "Pushing succesfull"
+                  echo "Taging as latest"
+                  docker tag franusi/hola-gente-action:$GIT_TAG_NAME franusi/hola-gente-action:latest
+                  echo "Tagged succesfully"
                 
