@@ -14,5 +14,5 @@ jobs:
               run: |
                 echo ${{ secrets.LOGIN_TOKEN }} || docker login -u franusierra --password-stdin docker.pkg.github.com
                 docker build . --file Dockerfile --tag docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-actions:$(date +%s)
-                docker push docker.pkg.github.com/franusierra/hola-gente/hola-gente-actions:latest
+                docker push docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-actions:latest
               
