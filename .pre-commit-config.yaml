@@ -7,28 +7,8 @@ repos:
     hooks:
       # This prevents issues if not managing git-lfs
       - id: check-added-large-files
-      # This prevents problems for multi OS
-      - id: check-case-conflict
-      # This prevents having executables that cannot be executed
-      - id: check-executables-have-shebangs
-      # Check JSON, XML and YAML
-      - id: check-json
-      # Prevents commiting unmergeable files
-      - id: check-merge-conflict
-      # Removes spaces at end of lines
-      - id: trailing-whitespace
-        args: [--markdown-linebreak-ext=md]
-      # AWS Creds
-      - id: detect-aws-credentials
       # Prevents commiting to master
-      # - id: no-commit-to-branch
-
-  # Change tabs for spaces
-  - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.7
-    hooks:
-      - id: remove-tabs
-        args: [--whitespaces-count, "2"]
+      - id: no-commit-to-branch
 
   # For deploy and validation scripts
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
@@ -46,4 +26,8 @@ repos:
       - id: yamllint
         files: \.(yaml|yml|template)$
         args: [--config-data, "{extends: default, rules: {line-length: {max: 240, level: warning}}, yaml-files: ['*.yaml', '*.yml', '*.yamllint', '*.template']}"]
+  - repo: https://github.com/petalmd/dockerfile-pre-commit
+    rev: v1.0  
+    hooks:
+      - id: dockerlint
 
