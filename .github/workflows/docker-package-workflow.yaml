@@ -1,40 +1,40 @@
 on:
-    pull_request:
-        tags:
-            - 'v*'
-    push:
-        tags:
-            - 'v*'
+  pull_request:
+    tags:
+      - "v*"
+  push:
+    tags:
+      - "v*"
 jobs:
-    buildAndPushDocker:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: olegtarasov/get-tag@v2
-              id: tagName
-            - name: Login to the docker registry of github packages
-              run: echo "Building package of version" $GIT_TAG_NAME
-            - name: Building the docker action 
-              run: docker build . --file Dockerfile --tag hola-gente-action:$GIT_TAG_NAME
-            - name: Taging the docker and pushing to repo of ghpackages
-              run: |
-                echo "Login to ghpackages..."
-                docker login -u franusierra -p ${{ secrets.LOGIN_TOKEN }} docker.pkg.github.com
-                echo "Login succesfull"
-                echo "Tagging image"
-                docker tag hola-gente-action:$GIT_TAG_NAME docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:$GIT_TAG_NAME
-                echo "Tagging succesfull"
-                echo "Pushing image"
-                docker push docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:$GIT_TAG_NAME
-                echo "Pushing succesfull"
-            - name: Taging the docker and pushing to repo of dockerhub
-              run: |
-                  echo "Login to dockerhub..."
-                  docker login -u franusi -p ${{ secrets.LOGIN_PASSWORD_DOCKERHUB }}
-                  echo "Login succesfull"
-                  echo "Tagging image"
-                  docker tag hola-gente-action:$GIT_TAG_NAME franusi/hola-gente-action:$GIT_TAG_NAME
-                  echo "Tagging succesfull"
-                  echo "Pushing image"
-                  docker push franusi/hola-gente-action:$GIT_TAG_NAME
-                  echo "Pushing succesfull"
+  buildAndPushDocker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: olegtarasov/get-tag@v2
+        id: tagName
+      - name: Login to the docker registry of github packages
+        run: echo "Building package of version" $GIT_TAG_NAME
+      - name: Building the docker action
+        run: docker build . --file Dockerfile --tag hola-gente-action:$GIT_TAG_NAME
+      - name: Taging the docker and pushing to repo of ghpackages
+        run: |
+          echo "Login to ghpackages..."
+          docker login -u franusierra -p ${{ secrets.LOGIN_TOKEN }} docker.pkg.github.com
+          echo "Login succesfull"
+          echo "Tagging image"
+          docker tag hola-gente-action:$GIT_TAG_NAME docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:$GIT_TAG_NAME
+          echo "Tagging succesfull"
+          echo "Pushing image"
+          docker push docker.pkg.github.com/franusierra/action-sample-sngular/hola-gente-action:$GIT_TAG_NAME
+          echo "Pushing succesfull"
+      - name: Taging the docker and pushing to repo of dockerhub
+        run: |
+          echo "Login to dockerhub..."
+          docker login -u franusi -p ${{ secrets.LOGIN_PASSWORD_DOCKERHUB }}
+          echo "Login succesfull"
+          echo "Tagging image"
+          docker tag hola-gente-action:$GIT_TAG_NAME franusi/hola-gente-action:$GIT_TAG_NAME
+          echo "Tagging succesfull"
+          echo "Pushing image"
+          docker push franusi/hola-gente-action:$GIT_TAG_NAME
+          echo "Pushing succesfull"
