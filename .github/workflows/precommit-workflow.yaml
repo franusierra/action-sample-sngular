@@ -19,7 +19,7 @@ jobs:
         run: |
           mkdir ~/bin
           curl -o ~/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Darwin-x86_64
-          export PATH=$PATH:~/bin/
+          echo "export PATH=$PATH:~/bin/" >> ~/.bashrc
       - uses: actions/cache@v1
         with:
           path: ~/.cache/pre-commit
