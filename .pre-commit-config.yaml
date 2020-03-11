@@ -3,13 +3,14 @@ fail_fast: true
 repos:
   # Generic repos
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0  # Use the ref you want to point at
+    rev: v2.4.0 # Use the ref you want to point at
     hooks:
       # This prevents issues if not managing git-lfs
       - id: check-added-large-files
       # Prevents commiting to master
       - id: no-commit-to-branch
-
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
   # For deploy and validation scripts
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 1.11.0
@@ -18,16 +19,18 @@ repos:
         args: [--rules, "~MD013"]
       - id: shellcheck
         args: [-e, "SC2124"]
-
   # Advanced YAML Linter that works on .template files
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.19.0
     hooks:
       - id: yamllint
         files: \.(yaml|yml|template)$
-        args: [--config-data, "{extends: default, rules: {line-length: {max: 240, level: warning}}, yaml-files: ['*.yaml', '*.yml', '*.yamllint', '*.template']}"]
+        args:
+          [
+            --config-data,
+            "{extends: default, rules: {line-length: {max: 240, level: warning}}, yaml-files: ['*.yaml', '*.yml', '*.yamllint', '*.template']}",
+          ]
   - repo: https://github.com/petalmd/dockerfile-pre-commit
-    rev: v1.0  
+    rev: v1.0
     hooks:
       - id: dockerlint
-

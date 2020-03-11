@@ -1,16 +1,16 @@
-name: '¡Hola gente!'
-description: 'Te saluda desde una imagen de docker'
+---
+name: "¡Hola gente!"
+description: "Te saluda desde una imagen de docker"
 inputs:
     nombre-a-saludar:
-        description: 'Nombre de la persona a la que va a saludar docker'
+        description: "Nombre de la persona a la que va a saludar docker"
         required: false
-        default: 'gente'
+        default: "gente"
 outputs:
     salu2:
-        description: 'El saludo que llega desde docker'
+        description: "El saludo que llega desde docker"
 runs:
-    using: 'docker'
-    image: 'docker://franusi/hola-gente-action:v0.2.4'
+    using: "docker"
+    image: "docker://franusi/hola-gente-action:v0.2.4"
     args:
-        - ${{ inputs.nombre-a-saludar }} 
-
+        - ${{ inputs.nombre-a-saludar }}
