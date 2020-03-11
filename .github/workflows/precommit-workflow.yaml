@@ -16,7 +16,9 @@ jobs:
       - name: set PY
         run: echo "::set-env name=PY::$(python -c 'import hashlib, sys;print(hashlib.sha256(sys.version.encode()+sys.executable.encode()).hexdigest())')"
       - name: install hadolint for docker linting
-        run: curl -o /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Darwin-x86_64
+        run: |
+          curl -o /custom/hadolint https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Darwin-x86_64
+          export PATH=$PATH:/custom/
       - uses: actions/cache@v1
         with:
           path: ~/.cache/pre-commit
