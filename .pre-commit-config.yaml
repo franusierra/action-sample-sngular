@@ -31,6 +31,6 @@ repos:
             "{extends: default, rules: {line-length: {max: 240, level: warning}}, yaml-files: ['*.yaml', '*.yml', '*.yamllint', '*.template']}",
           ]
   - repo: https://github.com/franusierra/dockerfile-pre-commit
-    rev: v1.6
+    rev: v1.7
     hooks:
       - id: dockerlint
